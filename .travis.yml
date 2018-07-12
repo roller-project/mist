@@ -11,6 +11,7 @@ sudo: required
 addons:
   artifacts:
     debug: true
+    region: sa-east-1
     paths:
       - dist_mist/release/*
       - dist_wallet/release/*
@@ -23,12 +24,6 @@ matrix:
       env:
           - GULP_PLATFORM=win
       addons:
-        artifacts:
-          debug: true
-          paths:
-            - dist_mist/release/*
-            - dist_wallet/release/*
-
         apt:
           packages:
             - icnsutils
@@ -49,12 +44,6 @@ matrix:
       env:
           - GULP_PLATFORM=linux
       addons:
-        artifacts:
-          debug: true
-          paths:
-            - dist_mist/release/*
-            - dist_wallet/release/*
-
         apt:
           packages:
             - icnsutils
@@ -66,13 +55,6 @@ matrix:
     # MAC
     - os: osx
       osx_image: xcode8.3  # currently xcode8.1+ doesn't support electron-builder macOS code-signing (https://github.com/electron-userland/electron-builder/issues/820#issuecomment-267777060)
-      addons:
-        artifacts:
-          debug: true
-          paths:
-            - dist_mist/release/*
-            - dist_wallet/release/*
-
       env:
           - GULP_PLATFORM=mac
       before_install:
