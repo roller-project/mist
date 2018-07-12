@@ -8,11 +8,12 @@ cache:
 
 sudo: required
 
-branches:
-  only:
-    - develop
-    - master
-    - /^greenkeeper/.*$/
+addons:
+  artifacts:
+    debug: true
+    paths:
+      - dist_mist/release/*
+      - dist_wallet/release/*
 
 matrix:
   include:
