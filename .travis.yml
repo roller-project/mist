@@ -12,9 +12,6 @@ addons:
   artifacts:
     debug: true
     s3_region: sa-east-1
-    paths:
-      - dist_mist/release/*
-      - dist_wallet/release/*
 
 matrix:
   include:
