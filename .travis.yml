@@ -11,7 +11,6 @@ sudo: required
 addons:
   artifacts:
     debug: true
-    s3_region: sa-east-1
 
 matrix:
   include:
@@ -78,17 +77,17 @@ script:
 
   # unit test
   - if [[ $GULP_PLATFORM == "linux" ]]; then yarn test:unit:once; fi
-    
+
   # build mist
   - if [[ $GULP_PLATFORM == "mac" ]]; then travis_wait 60 gulp --$GULP_PLATFORM; fi  # increase timeout for slower mac builds
   - if [[ $GULP_PLATFORM != "mac" ]]; then gulp --$GULP_PLATFORM; fi
 
   # assert creation of Mist artifacts
   - gulp verify-artifacts --mist --$GULP_PLATFORM
- 
+
   # build wallet if on master branch
   - if [[ $TRAVIS_BRANCH == "master" ]]; then travis_wait 60 gulp --wallet --$GULP_PLATFORM; fi
-  
+
   # assert creation of Wallet artifacts
   - if [[ $TRAVIS_BRANCH == "master" ]]; then gulp verify-artifacts --wallet --$GULP_PLATFORM; fi
 
